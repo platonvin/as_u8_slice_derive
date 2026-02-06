@@ -23,6 +23,14 @@ macro_rules! AsU8Slice {
                     )
                 }
             }
+            pub fn as_u8_slice_mut(&mut self) -> &mut [u8] {
+                unsafe {
+                    ::core::slice::from_raw_parts_mut(
+                        (self as *mut $name) as *mut u8,
+                        ::core::mem::size_of::<$name>(),
+                    )
+                }
+            }
         }
     };
 }
